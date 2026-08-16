@@ -1,0 +1,66 @@
+<block wx:if="{{loaded}}">
+  <!-- 首次使用引导 -->
+  <view wx:if="{{!hasLocation}}" class="empty">
+    <view class="empty-icon">🏠</view>
+    <view class="empty-text">欢迎使用数字储物盒</view>
+    <view class="empty-text">记录物品放在哪里，再也不怕找不到</view>
+    <view class="empty-text empty-step">第一步：创建你的家</view>
+    <view class="btn-primary empty-btn" bindtap="onSetupLocation">开始创建 →</view>
+  </view>
+
+  <block wx:else>
+    <!-- 搜索入口 -->
+    <view class="search-entry" bindtap="onTapSearch">
+      <text class="search-icon">🔍</text>
+      <text class="search-placeholder">找东西？搜物品名称或备注</text>
+    </view>
+
+    <!-- 已取出提醒 -->
+    <view wx:if="{{takenOutCount > 0}}" class="card takenout-banner" bindtap="onTapTakenOut">
+      <text>📤 有 {{takenOutCount}} 件物品处于取出状态</text>
+      <text class="cell-arrow">›</text>
+    </view>
+
+    <!-- 分类 -->
+    <view class="section-title">分类</view>
+    <view class="card category-card">
+      <view
+        wx:for="{{categories}}"
+        wx:key="code"
+        class="category-item"
+        data-code="{{item.code}}"
+        bindtap="onTapCategory"
+      >
+        <text class="category-icon">{{item.icon}}</text>
+        <text class="category-name">{{item.name}}</text>
+      </view>
+    </view>
+
+    <!-- 最近添加 -->
+    <view class="section-title">最近添加</view>
+    <view wx:if="{{recentItems.length === 0}}" class="card recent-empty">
+      还没有物品，点右下角 ＋ 添加第一件
+    </view>
+    <view class="card list-card" wx:else>
+      <view
+        wx:for="{{recentItems}}"
+        wx:key="_id"
+        class="cell"
+        data-id="{{item._id}}"
+        bindtap="onTapItem"
+      >
+        <image wx:if="{{item.photo}}" class="item-thumb" src="{{item.photo}}" mode="aspectFill" />
+        <text wx:else class="cell-icon">{{item.categoryIcon}}</text>
+        <view class="cell-body">
+          <view class="cell-title">{{item.name}}</view>
+          <view class="cell-desc">📍 {{item.pathText}}</view>
+        </view>
+        <text wx:if="{{item.takenOut}}" class="tag tag-warn">已取出</text>
+        <text class="cell-arrow">›</text>
+      </view>
+    </view>
+
+    <view class="fab" bindtap="onAddItem">＋</view>
+    <view class="fab-space"></view>
+  </block>
+</block>

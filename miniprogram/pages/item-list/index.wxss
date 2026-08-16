@@ -1,0 +1,12 @@
+.list-card {
+  padding: 0;
+  overflow: hidden;
+}
+.item-thumb {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}

@@ -1,0 +1,105 @@
+<view class="card">
+  <view class="form-row">
+    <text class="form-label">名称</text>
+    <input
+      class="form-input"
+      placeholder="如：护照"
+      value="{{name}}"
+      maxlength="30"
+      bindinput="onNameInput"
+    />
+  </view>
+
+  <view class="form-row form-row-col">
+    <text class="form-label">照片</text>
+    <view class="photo-row">
+      <view
+        wx:for="{{photos}}"
+        wx:key="*this"
+        class="photo-wrap"
+      >
+        <image
+          class="photo"
+          src="{{item}}"
+          mode="aspectFill"
+          data-src="{{item}}"
+          bindtap="onPreviewPhoto"
+        />
+        <view
+          class="photo-remove"
+          data-type="cloud"
+          data-index="{{index}}"
+          catchtap="onRemovePhoto"
+        >✕</view>
+      </view>
+      <view
+        wx:for="{{tempPhotos}}"
+        wx:key="*this"
+        class="photo-wrap"
+      >
+        <image
+          class="photo"
+          src="{{item}}"
+          mode="aspectFill"
+          data-src="{{item}}"
+          bindtap="onPreviewPhoto"
+        />
+        <view
+          class="photo-remove"
+          data-type="temp"
+          data-index="{{index}}"
+          catchtap="onRemovePhoto"
+        >✕</view>
+      </view>
+      <view
+        wx:if="{{photos.length + tempPhotos.length < maxPhotos}}"
+        class="photo-add"
+        bindtap="onAddPhoto"
+      >＋</view>
+    </view>
+  </view>
+
+  <view class="form-row form-row-col">
+    <text class="form-label">分类</text>
+    <view class="category-grid">
+      <view
+        wx:for="{{categories}}"
+        wx:key="code"
+        class="category-chip {{category === item.code ? 'category-selected' : ''}}"
+        data-code="{{item.code}}"
+        bindtap="onPickCategory"
+      >{{item.icon}} {{item.name}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{!isEdit}}" class="form-row" bindtap="onOpenPicker">
+    <text class="form-label">位置</text>
+    <text class="form-value {{locationPath ? '' : 'form-placeholder'}}">
+      {{locationPath || '选择存放位置'}}
+    </text>
+    <text class="cell-arrow">›</text>
+  </view>
+  <view wx:else class="form-row">
+    <text class="form-label">位置</text>
+    <text class="form-value form-placeholder">{{locationPath}}（移动请在详情页操作）</text>
+  </view>
+
+  <view class="form-row form-row-col">
+    <text class="form-label">备注</text>
+    <textarea
+      class="form-textarea"
+      placeholder="如：红色封皮，和户口本放一起"
+      value="{{note}}"
+      maxlength="200"
+      bindinput="onNoteInput"
+    />
+  </view>
+</view>
+
+<view class="card btn-primary {{name && locationId ? '' : 'btn-disabled'}}" bindtap="onSave">保存</view>
+
+<location-picker
+  show="{{showPicker}}"
+  bind:select="onSelectLocation"
+  bind:close="onClosePicker"
+/>

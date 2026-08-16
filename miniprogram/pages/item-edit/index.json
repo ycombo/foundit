@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "添加物品",
+  "usingComponents": {
+    "location-picker": "/components/location-picker/index"
+  }
+}

@@ -1,0 +1,101 @@
+.form-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--divider);
+}
+.form-row:last-child {
+  border-bottom: none;
+}
+.form-row-col {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form-label {
+  width: 120rpx;
+  color: #333;
+  flex-shrink: 0;
+}
+.form-input {
+  flex: 1;
+  font-size: 30rpx;
+}
+.form-value {
+  flex: 1;
+  text-align: right;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.form-placeholder {
+  color: var(--text-sub);
+}
+.form-textarea {
+  width: 100%;
+  min-height: 120rpx;
+  margin-top: 16rpx;
+  font-size: 28rpx;
+}
+
+.photo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+.photo-wrap {
+  position: relative;
+}
+.photo {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  background: #f0f0f0;
+}
+.photo-remove {
+  position: absolute;
+  top: -12rpx;
+  right: -12rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.photo-add {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 12rpx;
+  background: #f6f6f6;
+  border: 2rpx dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  color: #bbb;
+  box-sizing: border-box;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+.category-chip {
+  padding: 12rpx 24rpx;
+  border-radius: 32rpx;
+  background: #f6f6f6;
+  font-size: 26rpx;
+  border: 2rpx solid transparent;
+}
+.category-selected {
+  background: var(--brand-light);
+  color: var(--brand);
+  border-color: var(--brand);
+}

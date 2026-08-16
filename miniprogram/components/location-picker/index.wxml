@@ -1,0 +1,40 @@
+<view wx:if="{{show}}" class="picker-mask" bindtap="onClose">
+  <view class="picker-panel" catchtap="noop">
+    <view class="picker-header">
+      <text wx:if="{{currentId}}" class="picker-back" bindtap="onBack">‹ 返回</text>
+      <text wx:else class="picker-back picker-back-hidden">‹ 返回</text>
+      <text class="picker-title">{{currentName}}</text>
+      <text class="picker-close" bindtap="onClose">✕</text>
+    </view>
+
+    <scroll-view scroll-y class="picker-list">
+      <view wx:if="{{children.length === 0}}" class="picker-empty">
+        此处暂无子位置
+      </view>
+      <view
+        wx:for="{{children}}"
+        wx:key="_id"
+        class="cell"
+        data-id="{{item._id}}"
+        bindtap="onDrill"
+      >
+        <text class="cell-icon">{{item.icon}}</text>
+        <view class="cell-body">
+          <view class="cell-title">{{item.name}}</view>
+        </view>
+        <text
+          class="picker-choose"
+          data-id="{{item._id}}"
+          catchtap="onSelectChild"
+        >选这里</text>
+        <text class="cell-arrow">›</text>
+      </view>
+    </scroll-view>
+
+    <view
+      wx:if="{{canSelect}}"
+      class="btn-primary picker-confirm"
+      bindtap="onSelectCurrent"
+    >就放在「{{currentName}}」</view>
+  </view>
+</view>

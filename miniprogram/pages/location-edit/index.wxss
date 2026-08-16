@@ -1,0 +1,43 @@
+.form-row {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid var(--divider);
+}
+.form-row:last-child {
+  border-bottom: none;
+}
+.form-row-col {
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form-label {
+  width: 120rpx;
+  color: #333;
+  flex-shrink: 0;
+}
+.form-input {
+  flex: 1;
+  font-size: 30rpx;
+}
+.icon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 16rpx;
+}
+.icon-option {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 12rpx;
+  background: #f6f6f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44rpx;
+  border: 2rpx solid transparent;
+}
+.icon-selected {
+  background: var(--brand-light);
+  border-color: var(--brand);
+}

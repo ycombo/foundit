@@ -1,0 +1,39 @@
+<view class="search-bar">
+  <view class="search-input-wrap">
+    <text class="search-icon">🔍</text>
+    <input
+      class="search-input"
+      placeholder="物品名称或备注，如：护照"
+      value="{{keyword}}"
+      focus
+      confirm-type="search"
+      bindinput="onInput"
+    />
+    <text wx:if="{{keyword}}" class="search-clear" bindtap="onClear">✕</text>
+  </view>
+</view>
+
+<view wx:if="{{searched && results.length === 0}}" class="empty">
+  <view class="empty-icon">🔍</view>
+  <view class="empty-text">没有找到「{{keyword}}」</view>
+  <view class="empty-text">换个关键词试试</view>
+</view>
+
+<view class="card list-card" wx:if="{{results.length}}">
+  <view
+    wx:for="{{results}}"
+    wx:key="_id"
+    class="cell"
+    data-id="{{item._id}}"
+    bindtap="onTapItem"
+  >
+    <image wx:if="{{item.photo}}" class="item-thumb" src="{{item.photo}}" mode="aspectFill" />
+    <text wx:else class="cell-icon">{{item.categoryIcon}}</text>
+    <view class="cell-body">
+      <view class="cell-title">{{item.name}}</view>
+      <view class="cell-desc">📍 {{item.pathText}}</view>
+    </view>
+    <text wx:if="{{item.takenOut}}" class="tag tag-warn">已取出</text>
+    <text class="cell-arrow">›</text>
+  </view>
+</view>

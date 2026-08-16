@@ -1,0 +1,22 @@
+.stats-card {
+  display: flex;
+  justify-content: space-around;
+  padding: 40rpx 0;
+}
+.stat {
+  text-align: center;
+}
+.stat-num {
+  font-size: 44rpx;
+  font-weight: 600;
+  color: #333;
+}
+.stat-label {
+  font-size: 24rpx;
+  color: var(--text-sub);
+  margin-top: 8rpx;
+}
+.list-card {
+  padding: 0;
+  overflow: hidden;
+}

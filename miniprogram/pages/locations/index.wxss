@@ -1,0 +1,9 @@
+.list-card {
+  padding: 0;
+  overflow: hidden;
+}
+.empty-btn {
+  margin-top: 40rpx;
+  padding: 20rpx 60rpx;
+  display: inline-block;
+}

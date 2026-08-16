@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header .breadcrumb {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.header-actions {
+  padding: 20rpx 24rpx 0;
+  flex-shrink: 0;
+}
+.header-action {
+  color: var(--brand);
+  font-size: 26rpx;
+}
+.list-card {
+  padding: 0;
+  overflow: hidden;
+  margin-top: 0;
+}
+.add-row {
+  margin-top: 0;
+  text-align: center;
+  color: var(--brand);
+  font-size: 28rpx;
+}
+.item-thumb {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 12rpx;
+  margin-right: 20rpx;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}

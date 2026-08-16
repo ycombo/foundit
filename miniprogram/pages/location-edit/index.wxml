@@ -1,0 +1,29 @@
+<view wx:if="{{parentPath}}" class="breadcrumb">{{parentPath}}</view>
+
+<view class="card">
+  <view class="form-row">
+    <text class="form-label">名称</text>
+    <input
+      class="form-input"
+      placeholder="如：{{typeName === '家' ? '我的家' : typeName === '房间' ? '卧室' : '衣柜上层抽屉'}}"
+      value="{{name}}"
+      maxlength="20"
+      bindinput="onNameInput"
+    />
+  </view>
+  <view class="form-row form-row-col">
+    <text class="form-label">图标</text>
+    <view class="icon-grid">
+      <view
+        wx:for="{{icons}}"
+        wx:key="*this"
+        class="icon-option {{icon === item ? 'icon-selected' : ''}}"
+        data-icon="{{item}}"
+        bindtap="onPickIcon"
+      >{{item}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="card btn-primary {{name ? '' : 'btn-disabled'}}" bindtap="onSave">保存</view>
+<view wx:if="{{isEdit}}" class="btn-danger-text" bindtap="onDelete">删除{{typeName}}</view>

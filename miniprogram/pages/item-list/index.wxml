@@ -1,0 +1,25 @@
+<block wx:if="{{loaded}}">
+  <view wx:if="{{items.length === 0}}" class="empty">
+    <view class="empty-icon">📦</view>
+    <view class="empty-text">{{status === 'taken_out' ? '没有已取出的物品' : '该分类下暂无物品'}}</view>
+  </view>
+
+  <view class="card list-card" wx:else>
+    <view
+      wx:for="{{items}}"
+      wx:key="_id"
+      class="cell"
+      data-id="{{item._id}}"
+      bindtap="onTapItem"
+    >
+      <image wx:if="{{item.photo}}" class="item-thumb" src="{{item.photo}}" mode="aspectFill" />
+      <text wx:else class="cell-icon">{{item.categoryIcon}}</text>
+      <view class="cell-body">
+        <view class="cell-title">{{item.name}}</view>
+        <view class="cell-desc">📍 {{item.pathText}}</view>
+      </view>
+      <text wx:if="{{item.takenOut && status !== 'taken_out'}}" class="tag tag-warn">已取出</text>
+      <text class="cell-arrow">›</text>
+    </view>
+  </view>
+</block>

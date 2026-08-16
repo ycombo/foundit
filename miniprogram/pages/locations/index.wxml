@@ -1,0 +1,28 @@
+<block wx:if="{{loaded}}">
+  <view wx:if="{{homes.length === 0}}" class="empty">
+    <view class="empty-icon">🏠</view>
+    <view class="empty-text">还没有创建家</view>
+    <view class="empty-text">先创建一个家，再添加房间和收纳位置</view>
+    <view class="btn-primary empty-btn" bindtap="onAddHome">＋ 新建家</view>
+  </view>
+
+  <block wx:else>
+    <view class="card list-card">
+      <view
+        wx:for="{{homes}}"
+        wx:key="_id"
+        class="cell"
+        data-id="{{item._id}}"
+        bindtap="onTapHome"
+      >
+        <text class="cell-icon">{{item.icon}}</text>
+        <view class="cell-body">
+          <view class="cell-title">{{item.name}}</view>
+          <view class="cell-desc">{{item.childCount}} 个房间</view>
+        </view>
+        <text class="cell-arrow">›</text>
+      </view>
+    </view>
+    <view class="fab" bindtap="onAddHome">＋</view>
+  </block>
+</block>

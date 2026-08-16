@@ -1,0 +1,31 @@
+<view class="card stats-card">
+  <view class="stat">
+    <view class="stat-num">{{itemCount}}</view>
+    <view class="stat-label">物品</view>
+  </view>
+  <view class="stat">
+    <view class="stat-num">{{locationCount}}</view>
+    <view class="stat-label">位置</view>
+  </view>
+  <view class="stat">
+    <view class="stat-num">{{takenOutCount}}</view>
+    <view class="stat-label">已取出</view>
+  </view>
+</view>
+
+<view class="card list-card">
+  <view class="cell" bindtap="onTapTakenOut">
+    <text class="cell-icon">📤</text>
+    <view class="cell-body">
+      <view class="cell-title">已取出物品</view>
+    </view>
+    <text class="cell-arrow">›</text>
+  </view>
+  <view class="cell" bindtap="onTapAbout">
+    <text class="cell-icon">ℹ️</text>
+    <view class="cell-body">
+      <view class="cell-title">关于</view>
+    </view>
+    <text class="cell-arrow">›</text>
+  </view>
+</view>

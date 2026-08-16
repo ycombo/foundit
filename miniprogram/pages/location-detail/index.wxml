@@ -1,0 +1,50 @@
+<block wx:if="{{loaded}}">
+  <view class="header">
+    <view class="breadcrumb">{{pathText}}</view>
+    <view class="header-actions">
+      <text class="header-action" bindtap="onEdit">编辑</text>
+    </view>
+  </view>
+
+  <view class="section-title">{{location.type === 'home' ? '房间' : '子位置'}}</view>
+  <view class="card list-card" wx:if="{{children.length}}">
+    <view
+      wx:for="{{children}}"
+      wx:key="_id"
+      class="cell"
+      data-id="{{item._id}}"
+      bindtap="onTapChild"
+    >
+      <text class="cell-icon">{{item.icon}}</text>
+      <view class="cell-body">
+        <view class="cell-title">{{item.name}}</view>
+        <view class="cell-desc">{{item.itemCount}} 件物品</view>
+      </view>
+      <text class="cell-arrow">›</text>
+    </view>
+  </view>
+  <view class="card add-row" bindtap="onAddChild">＋ 添加{{location.type === 'home' ? '房间' : '子位置'}}</view>
+
+  <block wx:if="{{canHoldItems}}">
+    <view class="section-title">此处的物品</view>
+    <view class="card list-card" wx:if="{{items.length}}">
+      <view
+        wx:for="{{items}}"
+        wx:key="_id"
+        class="cell"
+        data-id="{{item._id}}"
+        bindtap="onTapItem"
+      >
+        <image wx:if="{{item.photo}}" class="item-thumb" src="{{item.photo}}" mode="aspectFill" />
+        <text wx:else class="cell-icon">{{item.categoryIcon}}</text>
+        <view class="cell-body">
+          <view class="cell-title">{{item.name}}</view>
+          <view class="cell-desc">{{item.categoryName}}</view>
+        </view>
+        <text wx:if="{{item.takenOut}}" class="tag tag-warn">已取出</text>
+        <text class="cell-arrow">›</text>
+      </view>
+    </view>
+    <view class="card add-row" bindtap="onAddItem">＋ 添加物品</view>
+  </block>
+</block>

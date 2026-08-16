@@ -1,0 +1,74 @@
+<block wx:if="{{loaded}}">
+  <swiper
+    wx:if="{{item.photos.length}}"
+    class="photo-swiper"
+    indicator-dots="{{item.photos.length > 1}}"
+  >
+    <swiper-item wx:for="{{item.photos}}" wx:key="*this">
+      <image
+        class="swiper-photo"
+        src="{{item}}"
+        mode="aspectFill"
+        data-src="{{item}}"
+        bindtap="onPreviewPhoto"
+      />
+    </swiper-item>
+  </swiper>
+
+  <view class="card">
+    <view class="title-row">
+      <text class="item-name">{{item.name}}</text>
+      <text class="tag {{item.status === 'taken_out' ? 'tag-warn' : ''}}">
+        {{item.status === 'taken_out' ? '已取出' : '在位'}}
+      </text>
+    </view>
+    <view class="meta-row">
+      <text class="tag">{{categoryIcon}} {{categoryName}}</text>
+    </view>
+    <view class="path-row" bindtap="onTapPath">
+      <text class="path-label">📍</text>
+      <text class="path-text">{{pathText}}</text>
+      <text class="cell-arrow">›</text>
+    </view>
+    <view wx:if="{{item.note}}" class="note">{{item.note}}</view>
+  </view>
+
+  <view class="card action-card">
+    <view wx:if="{{item.status === 'in_place'}}" class="action" bindtap="onTakeOut">
+      <text class="action-icon">📤</text>
+      <text>取出</text>
+    </view>
+    <view wx:else class="action" bindtap="onPutBack">
+      <text class="action-icon">📥</text>
+      <text>放回</text>
+    </view>
+    <view class="action" bindtap="onOpenMove">
+      <text class="action-icon">🔀</text>
+      <text>移动</text>
+    </view>
+    <view class="action" bindtap="onEdit">
+      <text class="action-icon">✏️</text>
+      <text>编辑</text>
+    </view>
+  </view>
+
+  <view class="section-title">记录</view>
+  <view class="card timeline-card">
+    <view wx:for="{{logs}}" wx:key="_id" class="timeline-item">
+      <view class="timeline-dot {{item.action === 'take_out' ? 'dot-warn' : ''}}"></view>
+      <view class="timeline-body">
+        <view class="timeline-action">{{item.actionText}}</view>
+        <view wx:if="{{item.detail}}" class="timeline-detail">{{item.detail}}</view>
+        <view class="timeline-time">{{item.time}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="btn-danger-text" bindtap="onDelete">删除物品</view>
+
+  <location-picker
+    show="{{showPicker}}"
+    bind:select="onSelectLocation"
+    bind:close="onClosePicker"
+  />
+</block>

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "物品详情",
+  "usingComponents": {
+    "location-picker": "/components/location-picker/index"
+  }
+}
